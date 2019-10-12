@@ -29,9 +29,9 @@ for pn in ivalues(GAMESTATE:GetHumanPlayers()) do
 		InitCommand=function(self)
 			self:visible(GAMESTATE:IsHumanPlayer(pn))
 			if pn == PLAYER_1 then
-				self:x(SCREEN_CENTER_X-250);
+				self:x(SCREEN_CENTER_X-275);
 			else
-				self:x(SCREEN_CENTER_X+250);
+				self:x(SCREEN_CENTER_X+275);
 			end;
 			
 			self:diffusealpha(0);
@@ -41,13 +41,13 @@ for pn in ivalues(GAMESTATE:GetHumanPlayers()) do
 		SongChosenMessageCommand=cmd(stoptweening;linear,.2;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,.2;diffusealpha,0);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,.2;diffusealpha,0);
-		PlayerJoinedMessageCommand=cmd(visible,GAMESTATE:IsHumanPlayer(player));
+		PlayerJoinedMessageCommand=cmd(visible,GAMESTATE:IsHumanPlayer(pn));
 		
 		LoadActor("MachineScore", pn)..{
-			InitCommand=cmd(y,120);
+			InitCommand=cmd(y,325);
 		};
 		LoadActor("PlayerScore", pn)..{
-			InitCommand=cmd(y,175);
+			InitCommand=cmd(y,380);
 		};
 	};
 end;
@@ -211,32 +211,10 @@ t[#t+1] = Def.ActorFrame {
 		end;]]
 	};
 	
+	--BPM DISPLAY
 	LoadFont("venacti/_venacti 26px bold diffuse")..{
 		InitCommand=cmd(addx,135;addy,58;zoom,.5;maxwidth,530;diffusealpha,0;horizalign,right);
 		OnCommand=cmd(linear,.8;diffusealpha,1);
-		Text="BPM";
-		CurrentSongChangedMessageCommand=function(self)
-			local song = GAMESTATE:GetCurrentSong();
-			if song then
-				self:diffusealpha(1);
-			else
-				self:diffusealpha(0);
-			end;
-		end;
-		--[[CurrentCourseChangedMessageCommand=function(self)
-			if GAMESTATE:GetCurrentCourse() and SCREENMAN:GetTopScreen():GetName() == "ScreenSelectCourse" then
-				local course = GAMESTATE:GetCurrentCourse();
-				if course then
-					self:settext(course:GetDisplayFullTitle());
-				else
-					self:settext("");
-				end;
-			end;
-		end;]]
-	};
-	--BPM DISPLAY
-	LoadFont("venacti/_venacti 13px bold diffuse")..{
-		InitCommand=cmd(addx,135;horizalign,right;addy,71;zoomx,0.385;zoomy,0.38;shadowlength,1);
 		CurrentSongChangedMessageCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong();
 			if song then
@@ -253,6 +231,29 @@ t[#t+1] = Def.ActorFrame {
 				end;
 			else
 				self:settext("");
+			end;
+		end;
+		--[[CurrentCourseChangedMessageCommand=function(self)
+			if GAMESTATE:GetCurrentCourse() and SCREENMAN:GetTopScreen():GetName() == "ScreenSelectCourse" then
+				local course = GAMESTATE:GetCurrentCourse();
+				if course then
+					self:settext(course:GetDisplayFullTitle());
+				else
+					self:settext("");
+				end;
+			end;
+		end;]]
+	};
+	
+	LoadFont("venacti/_venacti 13px bold diffuse")..{
+		InitCommand=cmd(addx,135;horizalign,right;addy,71;zoomx,0.385;zoomy,0.38;shadowlength,1);
+		Text="BPM";
+		CurrentSongChangedMessageCommand=function(self)
+			local song = GAMESTATE:GetCurrentSong();
+			if song then
+				self:diffusealpha(1);
+			else
+				self:diffusealpha(0);
 			end;
 		end;
 		--[[CurrentCourseChangedMessageCommand=function(self)
@@ -691,14 +692,14 @@ t[#t+1] = Def.ActorFrame{
 	InitCommand=cmd(xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.8);
 
 	LoadActor("rdy_add")..{
-		InitCommand=cmd(y,-20;diffusealpha,0;zoom,0.8;draworder,100;blend,Blend.Multiply;);
+		InitCommand=cmd(y,-30;diffusealpha,0;zoom,0.49;draworder,100;blend,Blend.Multiply;);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
 	};
 
 	LoadActor("rdy_add")..{
-		InitCommand=cmd(y,-20;zoom,0.8;diffusealpha,0;draworder,100;blend,Blend.Add;);
+		InitCommand=cmd(y,-30;zoom,0.49;diffusealpha,0;draworder,100;blend,Blend.Add;);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
@@ -706,14 +707,11 @@ t[#t+1] = Def.ActorFrame{
 
 
 	LoadActor("rdy_sub")..{
-		InitCommand=cmd(y,17;zoom,0.75;diffusealpha,0;draworder,100;diffuse,0,0,0,0);
+		InitCommand=cmd(y,17;zoom,0.45;diffusealpha,0;draworder,100;diffuse,0,0,0,0);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.15;y,SCREEN_CENTER_Y+17;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.15;y,SCREEN_CENTER_Y+37;diffusealpha,0);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.15;y,SCREEN_CENTER_Y+37;diffusealpha,0);
 	};
-
-
-
 
 	LoadActor("rdy_logo")..{
 		InitCommand=cmd(x,3;y,-42;zoom,0.4;draworder,100;thump;effectperiod,2;;diffuse,0,0,0,0;diffusetopedge,0.25,0.25,0.25,0);
@@ -721,28 +719,12 @@ t[#t+1] = Def.ActorFrame{
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);
 	};
-	
-	LoadActor(THEME:GetPathG("", "_press "..GAMESTATE:GetCurrentGame():GetName().. " 5x2"))..{
-		Frames = Sprite.LinearFrames(10,.3);
-		InitCommand=cmd(x,-110;y,-64;zoom,0.45;visible,false;draworder,100);
-		SongChosenMessageCommand=cmd(setstate,0;visible,true);
-		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
-		SongUnchosenMessageCommand=cmd(visible,false);
-	};
-	LoadActor(THEME:GetPathG("", "_press "..GAMESTATE:GetCurrentGame():GetName().. " 5x2"))..{
-		Frames = Sprite.LinearFrames(10,.3);
-		InitCommand=cmd(x,110;y,-64;zoom,0.45;visible,false;draworder,100);
-		SongChosenMessageCommand=cmd(setstate,0;visible,true);
-		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
-		SongUnchosenMessageCommand=cmd(visible,false);
-	};
-
 }
 
 --TODO: Fix PlayerJoinedMessageCommand, put it inside the above actorframe (with better error handling)
 if GAMESTATE:IsSideJoined(PLAYER_1) then
 	t[#t+1] = LoadActor(THEME:GetPathG("","PlayerSteps"), PLAYER_1)..{
-		InitCommand=cmd(draworder,100;xy,SCREEN_CENTER_X-135,SCREEN_HEIGHT*.77;visible,false);
+		InitCommand=cmd(draworder,100;zoom,0.9;xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.735;visible,false);
 		SongChosenMessageCommand=cmd(visible,true);
 		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
 		SongUnchosenMessageCommand=cmd(visible,false);
@@ -750,17 +732,37 @@ if GAMESTATE:IsSideJoined(PLAYER_1) then
 		--PlayerJoinedMessageCommand=cmd(visible,GAMESTATE:IsHumanPlayer(PLAYER_1));
 		--CurrentStepsP1ChangedMessageCommand=cmd(stoptweening;diffusealpha,0;zoomx,0;decelerate,0.075;zoomx,1;diffusealpha,1);
 	}
+	t[#t+1] = Def.ActorFrame{
+		InitCommand=cmd(xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.8);
+		LoadActor(THEME:GetPathG("", "_press "..GAMESTATE:GetCurrentGame():GetName().. " 5x2"))..{
+		Frames = Sprite.LinearFrames(10,.3);
+		InitCommand=cmd(x,-100;y,-40;zoom,0.45;visible,false;draworder,100);
+		SongChosenMessageCommand=cmd(setstate,0;visible,true);
+		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
+		SongUnchosenMessageCommand=cmd(visible,false);
+		};
+	}
 end;
 
 if GAMESTATE:IsSideJoined(PLAYER_2) then
 	t[#t+1] = LoadActor(THEME:GetPathG("","PlayerSteps"), PLAYER_2)..{
-		InitCommand=cmd(draworder,100;xy,SCREEN_CENTER_X+80,SCREEN_HEIGHT*.77;visible,false);
+		InitCommand=cmd(draworder,100;zoom,0.9;xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.735;visible,false);
 		SongChosenMessageCommand=cmd(visible,true);
 		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
 		SongUnchosenMessageCommand=cmd(visible,false);
 		--OnCommand=cmd(visible,GAMESTATE:IsHumanPlayer(PLAYER_2));
 		--PlayerJoinedMessageCommand=cmd(visible,GAMESTATE:IsHumanPlayer(PLAYER_2));
 		--CurrentStepsP2ChangedMessageCommand=cmd(stoptweening;zoomx,0;diffusealpha,0;decelerate,0.075;zoomx,1;diffusealpha,1);
+	}
+	t[#t+1] = Def.ActorFrame{
+		InitCommand=cmd(xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.8);
+		LoadActor(THEME:GetPathG("", "_press "..GAMESTATE:GetCurrentGame():GetName().. " 5x2"))..{
+		Frames = Sprite.LinearFrames(10,.3);
+		InitCommand=cmd(x,100;y,-40;zoom,0.45;visible,false;draworder,100);
+		SongChosenMessageCommand=cmd(setstate,0;visible,true);
+		TwoPartConfirmCanceledMessageCommand=cmd(visible,false);
+		SongUnchosenMessageCommand=cmd(visible,false);
+		};
 	}
 end;
 

@@ -1,4 +1,4 @@
-themeVersion = "0.97 RC1";
+themeVersion = "Git";
 
 --Because it's useful
 function Actor:Cover()
@@ -119,7 +119,8 @@ StepManiaCredits.AddSection({
 	"Midiman",
 	"TeruFSX",
 	"DaisuMaster",
-	"Saturn2888"
+	"Saturn2888",
+	"Chrissy573"
 });
 
 StepManiaCredits.AddSection({

@@ -3,12 +3,12 @@ local t = Def.ActorFrame{}
 
 --difficulty name
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
-	InitCommand=cmd(maxwidth,300;x,30;zoom,0.5;y,2;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
-
+	InitCommand=cmd(maxwidth,300;x,-32;zoom,0.5;y,2;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
+	
 	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
 	ExtraColorCommand=cmd(diffuse,color("1,1,0,1");diffusebottomedge,color("0.9,0.5,0.2,1"));
 	AutogenColorCommand=cmd(diffuse,color("0.4,1,0.5,1");diffusebottomedge,color("0.3,0.8,0.3,1"));
-
+	
 	CurrentSongChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP1ChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP2ChangedMessageCommand=cmd(queuecommand,"Set");
@@ -20,6 +20,10 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 			local diff = string.gsub(string.gsub(ToEnumShortString(steps:GetStepsType()),".*_",""), ".*", string.upper);
 			local meter = steps:GetMeter()
 			local threshold = THEME:GetMetric("SongManager","ExtraColorMeter");
+			if player == PLAYER_2 then
+				self:horizalign(left);
+				self:x(32);
+			end;
 			if diff == "DOUBLE" then
 				if string.find(steps:GetDescription(), "DP") then
 					self:settext("Double Performance")
@@ -58,7 +62,7 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 
 --meter/level
 t[#t+1] = LoadFont("venacti/_venacti_ 26px bold monospace numbers") .. {
-	InitCommand=cmd(zoom,0.85;x,34;y,3;maxwidth,45;vertalign,top;horizalign,left;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");glowshift;queuecommand,"Set");
+	InitCommand=cmd(zoom,0.85;x,-2;y,3;maxwidth,45;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");glowshift;queuecommand,"Set");
 	
 	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
 	ExtraColorCommand=cmd(diffuse,color("1,1,0,1");diffusebottomedge,color("0.9,0.5,0.2,1"));
@@ -69,6 +73,10 @@ t[#t+1] = LoadFont("venacti/_venacti_ 26px bold monospace numbers") .. {
 	CurrentStepsP2ChangedMessageCommand=cmd(queuecommand,"Set");
 	SetCommand=function(self)
 		local song = GAMESTATE:GetCurrentSong();
+		if player == PLAYER_2 then
+			self:horizalign(left);
+			self:x(2);
+		end;
 		if song then
 			self:diffusealpha(1);
 			local meter = GAMESTATE:GetCurrentSteps(player):GetMeter()
@@ -97,12 +105,16 @@ t[#t+1] = LoadFont("venacti/_venacti_ 26px bold monospace numbers") .. {
 
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 	Text="Lv.";
-	InitCommand=cmd(zoom,0.3;y,14;x,26;vertalign,top;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffusebottomedge,color("0.8,0.8,0.8,1");queuecommand,"Set");
+	InitCommand=cmd(zoom,0.3;y,15;x,-31;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffusebottomedge,color("0.8,0.8,0.8,1");queuecommand,"Set");
 	CurrentSongChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP1ChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP2ChangedMessageCommand=cmd(queuecommand,"Set");
 	SetCommand=function(self)
 		local song = GAMESTATE:GetCurrentSong()
+		if player == PLAYER_2 then
+			self:horizalign(left);
+			self:x(32);
+		end;
 		if song then
 			self:diffusealpha(1);
 		else

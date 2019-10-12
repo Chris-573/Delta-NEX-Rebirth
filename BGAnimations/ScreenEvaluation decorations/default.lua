@@ -30,10 +30,10 @@ t[#t+1] = Def.ActorFrame{
 	};]]
 
 	LoadActor(THEME:GetPathG("","PlayerSteps"), PLAYER_1)..{
-		InitCommand=cmd(draworder,100;zoom,0.925;x,-215;y,-10;visible,GAMESTATE:IsSideJoined(PLAYER_1));
+		InitCommand=cmd(draworder,100;zoom,0.925;x,-100;y,-10;visible,GAMESTATE:IsSideJoined(PLAYER_1));
 	};
 	LoadActor(THEME:GetPathG("","PlayerSteps"), PLAYER_2)..{
-		InitCommand=cmd(draworder,100;x,170;y,-10;zoom,0.925;visible,GAMESTATE:IsSideJoined(PLAYER_2));
+		InitCommand=cmd(draworder,100;zoom,0.925;x,100;y,-10;visible,GAMESTATE:IsSideJoined(PLAYER_2));
 	};
 
 	LoadFont("venacti/_venacti_outline 26px bold diffuse")..{
