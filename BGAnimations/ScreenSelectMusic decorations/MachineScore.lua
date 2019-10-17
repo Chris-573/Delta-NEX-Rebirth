@@ -130,16 +130,16 @@ return Def.ActorFrame{
 				assert(scorelist);
 				local scores = scorelist:GetHighScores();
 				local topscore = scores[1];
-				local text = "";
+
 				if topscore then
-					text = math.floor(topscore:GetPercentDP()*100).."%"
+					text = tonumber(string.format("%.02f",(topscore:GetPercentDP()*100))).."%";
 				else
-					text = "0%";
+					text = "0.00%";
 				end;
 				self:diffusealpha(1);
 				self:settext(text);
 			else
-				self:settext("0%");
+				self:settext("0.00%");
 				self:diffusealpha(0.4);
 			end;
 

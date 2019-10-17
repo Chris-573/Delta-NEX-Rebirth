@@ -8,7 +8,7 @@ local dancepoints = round(sStats:GetPlayerStageStats(player):GetPercentDancePoin
 local misses = 	sStats:GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_Miss")+
 		sStats:GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointMiss");
 
-local grade = GetGradeFromDancePoints(dancepoints);
+local grade = GetGradeFromDancePoints(dancepoints, misses);
 
 return Def.ActorFrame{
 

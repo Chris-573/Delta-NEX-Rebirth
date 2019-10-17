@@ -100,18 +100,14 @@ return Def.ActorFrame{
 				local topscore = scores[1];
 
 				if topscore then
-					if string.find(PREFSMAN:GetPreference("VideoRenderers"), "d3d,") then
-						text = math.floor(topscore:GetPercentDP()*100).."%"
-					else
-						text = (((math.floor(topscore:GetPercentDP()*100000))/1000).."%");
-					end
+					text = tonumber(string.format("%.02f",(topscore:GetPercentDP()*100))).."%";
 				else
-					text = "0%";
+					text = "0.00%";
 				end;
 				self:diffusealpha(1);
 				self:settext(text);
 			else
-				self:settext("0%");
+				self:settext("0.00%");
 				self:diffusealpha(0.4);
 			end;
 

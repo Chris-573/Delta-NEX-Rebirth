@@ -48,7 +48,7 @@ end
 
 return Def.ActorFrame{
 		InitCommand=function(self)
-			self:y(60);
+			self:y(0);
 			self:draworder(11);
 			if pn == PLAYER_1 then
 				self:x(SCREEN_LEFT+27);

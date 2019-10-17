@@ -6,7 +6,7 @@ end
 
 local delay = 0.325
 
-local dancepoints = round(STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetPercentDancePoints()*100)
+local dancepoints = tonumber(string.format("%.02f",STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetPercentDancePoints()*100));
 local misses = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_Miss")+
 		STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointMiss");
 

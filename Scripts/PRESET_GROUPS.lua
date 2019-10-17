@@ -13,6 +13,7 @@ _G.predefined_group_list = {
 "16-FIESTA 2",
 "17-PRIME",
 "18-PRIME 2",
+"19-XX"
 }
 
 --Just for testing!

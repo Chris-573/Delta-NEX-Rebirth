@@ -103,13 +103,14 @@ local t = Def.ActorFrame{
         SongUnchosenMessageCommand=cmd(play);
     };
     
-    LoadActor(THEME:GetPathS("","SSM_Select"))..{
+    LoadActor(THEME:GetPathS("","CommandMenu Set"))..{
         SongChosenMessageCommand=cmd(play);
         StepsChosenMessageCommand=cmd(play);
     };
-    LoadActor(THEME:GetPathS("","SSM_Confirm"))..{
-        OffCommand=cmd(play);
-    };
+    
+    --LoadActor(THEME:GetPathS("","CommandMenu Set"))..{
+    --    OffCommand=cmd(play);
+    --};
 
 }
 

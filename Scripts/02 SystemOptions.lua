@@ -485,11 +485,6 @@ function UserPrefSetPreferences()
 	return t;
 end
 
-
-
-
-
-
 --Rename back to Setup() to enable
 function Setup_DISABLED()
 

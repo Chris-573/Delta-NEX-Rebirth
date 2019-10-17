@@ -86,7 +86,12 @@ if THEME:GetMetric("ScreenSelectMusic","UseOptionsList") then
 			};
 			
 			LoadActor("oplist")..{
-				InitCommand=cmd(vertalign,top;addx,-300*offset;zoom,0.675);
+				InitCommand=cmd(vertalign,top;x,-300*offset;zoom,0.675);
+				OnCommand=function(self)
+					if pn == PLAYER_2 then
+						self:x(300*offset);
+					end;
+				end;
 			};
 			
 			LoadFont("Common Normal")..{
