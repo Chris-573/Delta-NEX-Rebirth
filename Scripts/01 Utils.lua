@@ -79,6 +79,7 @@ function scorecap(n) -- credit http://richard.warburton.it
 	return left..(num:reverse():gsub('(%d%d%d)','%1.'):reverse())..right
 end
 
+--Imported from Rave It Out
 function getNumberOfElements(t)
 	local count = 0;
 	if t then
@@ -88,6 +89,14 @@ function getNumberOfElements(t)
 	end;
 	return count;
 end
+
+function setScores(PlayerScores)
+	setenv("PlayerScores",PlayerScores);
+end;
+
+function getScores()
+	return getenv("PlayerScores");
+end;
 
 function ListActorChildren(frame)
 	if frame:GetNumChildren() == 0 then

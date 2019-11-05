@@ -127,9 +127,11 @@ return Def.ActorFrame{
 	--SCORE
 	LoadFont("venacti/_venacti_outline 26px bold monospace numbers") .. {
 		InitCommand=cmd(zoom,0.45;uppercase,true;shadowlength,1;);
+		OnCommand=function(self)
+			self:settext("0");
+		end;
 		ComboChangedMessageCommand=function(self)
-			local PSS = STATSMAN:GetCurStageStats():GetPlayerStageStats(player);
-			self:settext(scorecap(PSS:GetScore()));
+			self:settext(scorecap(getScores()[player]));
 		end;
 	};
 };

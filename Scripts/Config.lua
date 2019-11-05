@@ -1,7 +1,5 @@
 --//================================================================
 
-
-
 local theme_conf_default = {
     BGBrightness = 100,
     DefaultBG = false,

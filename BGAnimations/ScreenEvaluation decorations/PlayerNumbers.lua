@@ -2,13 +2,19 @@ local player = ...
 local alignment = 0;
 if player == "PlayerNumber_P2" then alignment = 1 end;
 
+local StepData = GAMESTATE:GetCurrentSteps(player);
+local StepLevel = StepData:GetMeter();
+local StepType = StepData:GetStepsType();
+local CSS = STATSMAN:GetCurStageStats();
+local PSS = CSS:GetPlayerStageStats(player);
+
 local t = Def.ActorFrame{}
 
 local AllowSuperb = (PREFSMAN:GetPreference("AllowW1") == 'AllowW1_Everywhere');
 local spacing = AllowSuperb and 36 or 40;
 local itembaseX = -20
 local itembaseY = 20
-local delay = 0.325
+local delay = 0.2
 local labelZoomX = 0.375
 local labelZoomY = 0.35
 local numberZoom = .5;
@@ -17,25 +23,25 @@ local numberZoom = .5;
 		STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2")+
 		STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointHit");]]
 
-local superbs =	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W1");
-local perfects = STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W2");
+local superbs =	PSS:GetTapNoteScores("TapNoteScore_W1");
+local perfects = PSS:GetTapNoteScores("TapNoteScore_W2");
 --Check AllowSuperb so it knows where to add the hold note scores
 if AllowSuperb then
-	superbs = superbs + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointHit");
+	superbs = superbs + PSS:GetTapNoteScores("TapNoteScore_CheckpointHit");
 else
-	perfects = perfects + STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointHit");
+	perfects = perfects + PSS:GetTapNoteScores("TapNoteScore_CheckpointHit");
 end;
 
-local greats = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W3");
-local goods = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W4");
-local bads = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_W5");
+local greats = 	PSS:GetTapNoteScores("TapNoteScore_W3");
+local goods = 	PSS:GetTapNoteScores("TapNoteScore_W4");
+local bads = 	PSS:GetTapNoteScores("TapNoteScore_W5");
 
-local misses = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_Miss")+
-		STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetTapNoteScores("TapNoteScore_CheckpointMiss");
+local misses = 	PSS:GetTapNoteScores("TapNoteScore_Miss") +
+				PSS:GetTapNoteScores("TapNoteScore_CheckpointMiss");
 
-local combo = 	STATSMAN:GetCurStageStats():GetPlayerStageStats(player):MaxCombo();
-
-local score = 	scorecap(STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetScore());
+local combo = 	PSS:MaxCombo();
+			
+local score = 	scorecap(PSS:GetScore(player));
 
 local digits = string.len(math.max(perfects,greats,goods,bads,misses,combo));
 if digits < 3 then digits = 3 end;
@@ -141,7 +147,6 @@ t[#t+1] = Def.ActorFrame{
 	};
 
 	--SCORE
-
 	LoadFont("combo/_handelgothic bt 70px")..{
 		InitCommand=cmd(halign,alignment;shadowlengthy,0.8;shadowlengthx,0.6;shadowcolor,color("0,0,0,0.6");diffusebottomedge,color("0.8,0.8,0.8,1");maxwidth,320;zoom,numberZoom);
 		OnCommand=cmd(y,spacing*6;diffusealpha,0;sleep,1+delay*7;decelerate,0.3;diffusealpha,1);

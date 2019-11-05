@@ -1,11 +1,7 @@
-local function obf(st)
-	return base64decode(st)
+local function obf(st) return base64decode(st) end;  local function 
+asdf() return 
+_G[obf('VG9FbnVtU2hvcnRTdHJpbmc=')](_G[obf('R0FNRVNUQVRF')][obf('R2V0Q29pbk1vZGU=')](_G[obf('R0FNRVNUQVRF')])); 
 end;
-
-local function asdf()
-	return _G[obf('VG9FbnVtU2hvcnRTdHJpbmc=')](_G[obf('R0FNRVNUQVRF')][obf('R2V0Q29pbk1vZGU=')](_G[obf('R0FNRVNUQVRF')]));
-end;
-
 
 function BasicOrFullMode()
 	if asdf() == obf("UGF5") then

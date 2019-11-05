@@ -6,8 +6,6 @@ local LIFEBAR_WIDTH = SCREEN_WIDTH/2-130
 --Size of the actual lifebar. Yes I know this is terrible code I'll fix it later I swear
 local LIFEBAR_REALWIDTH = LIFEBAR_WIDTH+50
 
-
-
 return Def.ActorFrame{
 	--[[
 	Everything should be based around the center
@@ -127,6 +125,7 @@ return Def.ActorFrame{
 		
 		--Flip the score back around and change alignment if player 2
 		OnCommand=function(self)
+			self:settext("0");
 			if player == PLAYER_2 then
 				self:horizalign(left);
 				self:zoomx(-.45);
@@ -136,8 +135,7 @@ return Def.ActorFrame{
 			end;
 		end;
 		ComboChangedMessageCommand=function(self)
-			local PSS = STATSMAN:GetCurStageStats():GetPlayerStageStats(player);
-			self:settext(scorecap(PSS:GetScore()));
+			self:settext(scorecap(getScores()[player]));
 		end;
 	};
 	

@@ -134,6 +134,7 @@ return Def.ActorFrame{
 		
 		--Flip the score back around and change alignment if player 2
 		OnCommand=function(self)
+			self:settext("0");
 			if player == PLAYER_2 then
 				self:horizalign(left);
 				self:zoomx(-.45);
@@ -143,8 +144,7 @@ return Def.ActorFrame{
 			end;
 		end;
 		ComboChangedMessageCommand=function(self)
-			local PSS = STATSMAN:GetCurStageStats():GetPlayerStageStats(player);
-			self:settext(scorecap(PSS:GetScore()));
+			self:settext(scorecap(getScores()[player]));
 		end;
 	};
 	

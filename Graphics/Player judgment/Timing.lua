@@ -55,26 +55,6 @@ t.JudgmentMessageCommand=function(self, param)
 			iFrame = iFrame + 1;
 		end
 	end
-
-	--[[
-		local PSS = STATSMAN:GetCurStageStats():GetPlayerStageStats(param.Player);	
-		local meter = math.ceil(GAMESTATE:GetCurrentSteps(param.Player):GetMeter()/5);
-		local multiplier = 1+(math.floor(PSS:GetCurrentCombo()/100));
-	
-		if multiplier>=5 then
-			multiplier=5
-		end
-	
-		current = current+((TapScoring[param.TapNoteScore])*meter);
-		
-		if current < 0 then
-			current = 0;
-		end
-	
-	--SCREENMAN:SystemMessage("desu  "..current.."   "..multiplier.."X".."   "..meter);
-
-	PSS:SetScore(current);
-	]]
 	
 	c.Judgment:visible( true );
 	c.Judgment:setstate( iFrame );
