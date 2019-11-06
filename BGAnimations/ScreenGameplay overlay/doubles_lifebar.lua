@@ -1,5 +1,6 @@
 --LoadActor("file.lua", argument) -> arguments are passed in as "...". As in literally, the variable is named "..." (without the quotes)
 local player = ...;
+
 --in normal syntax, style = (GetStyle() == "OnePlayerTwoSides") ? "Single" : "Double")
 local style = (ToEnumShortString(GAMESTATE:GetCurrentStyle():GetStyleType()) == "OnePlayerTwoSides") and "Double" or "Single";
 --SCREENMAN:SystemMessage(style);
@@ -127,11 +128,8 @@ return Def.ActorFrame{
 	--SCORE
 	LoadFont("venacti/_venacti_outline 26px bold monospace numbers") .. {
 		InitCommand=cmd(zoom,0.45;uppercase,true;shadowlength,1;);
-		OnCommand=function(self)
-			self:settext("0");
-		end;
 		ComboChangedMessageCommand=function(self)
-			self:settext(scorecap(getScores()[player]));
+			self:settext(string.format("%.02f",STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetPercentDancePoints()*100).."%");
 		end;
 	};
 };
