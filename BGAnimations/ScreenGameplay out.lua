@@ -7,6 +7,7 @@ local PlayerScores = {
 
 return Def.ActorFrame {
 	Def.Quad {
+		InitCommand=cmd(setsize,SCREEN_WIDTH,SCREEN_HEIGHT;Center;diffusealpha,0;);
 		OffCommand=function(self)
 			for Player in ivalues(GAMESTATE:GetHumanPlayers()) do
 				local StepData = GAMESTATE:GetCurrentSteps(Player);
@@ -64,6 +65,9 @@ return Def.ActorFrame {
 				
 				PSS:SetScore(PlayerScores[Player]);
 			end;
+			self:sleep(1);
+			self:linear(1);
+			self:diffusealpha(1);
 		end;
 	};
 };
