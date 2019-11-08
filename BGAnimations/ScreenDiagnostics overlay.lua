@@ -38,7 +38,7 @@ local t = Def.ActorFrame{
 		Text="StepMania build: "..ProductFamily().." "..ProductVersion();
 		InitCommand=cmd(xy,SCREEN_CENTER_X,60);
 		OnCommand=function(self)
-			if ProductVersion() ~= "5.0.12" then
+			if string.find(ProductVersion(), "5%.0") then
 				self:settext(self:GetText().." (Incompatible version!)");
 				self:diffuse(Color("Red"));
 			else
