@@ -19,7 +19,7 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 		local threshold = THEME:GetMetric("SongManager","ExtraColorMeter");
 		if diff == "DOUBLE" then
 			if string.find(steps:GetDescription(), "DP") then
-				self:settext("Double Performance")
+				self:settext("DP")
 			else
 				self:settext(diff);
 			end;

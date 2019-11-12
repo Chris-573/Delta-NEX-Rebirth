@@ -43,7 +43,13 @@ local combo = 	PSS:MaxCombo();
 			
 local score = 	scorecap(PSS:GetScore(player));
 
-local digits = string.len(math.max(perfects,greats,goods,bads,misses,combo));
+local digits;
+if AllowSuperb then
+	digits = string.len(math.max(superbs,perfects,greats,goods,bads,misses,combo));
+else
+	digits = string.len(math.max(perfects,greats,goods,bads,misses,combo));
+end;
+
 if digits < 3 then digits = 3 end;
 
 t[#t+1] = Def.ActorFrame{
