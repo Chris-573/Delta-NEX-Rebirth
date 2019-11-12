@@ -484,19 +484,6 @@ t[#t+1] = Def.Quad {
 	InitCommand=cmd(horizalign,left;draworder,100;fadeleft,1;;zoomto,120,SCREEN_HEIGHT;y,SCREEN_CENTER_Y;x,SCREEN_CENTER_X+320;diffuse,0,0,0,1);
 }
 
---next/prev indicator
---I like it in dance, but people will probably complain...
-if GAMESTATE:GetCurrentGame():GetName() == "pump" then
-	t[#t+1] = LoadActor(THEME:GetPathG("", "downTap/arrow_left"))..{
-			InitCommand=cmd(draworder,131;horizalign,left;vertalign,bottom;xy,SCREEN_LEFT,SCREEN_BOTTOM;zoom,.675;);
-			PreviousGroupMessageCommand=cmd(stoptweening;glow,color("1,1,1,.8");xy,SCREEN_LEFT-5,SCREEN_BOTTOM+5;sleep,.12;decelerate,.2;glow,color("0,0,0,0");xy,SCREEN_LEFT,SCREEN_BOTTOM;);
-		};
-	t[#t+1] = LoadActor(THEME:GetPathG("", "downTap/arrow_right"))..{
-			InitCommand=cmd(draworder,131;horizalign,right;vertalign,bottom;xy,SCREEN_RIGHT,SCREEN_BOTTOM;zoom,.675;);
-			NextGroupMessageCommand=cmd(stoptweening;glow,color("1,1,1,.8");xy,SCREEN_RIGHT+5,SCREEN_BOTTOM+5;sleep,.12;decelerate,.2;glow,color("0,0,0,0");xy,SCREEN_RIGHT,SCREEN_BOTTOM;);
-		};
-end;
-
 t[#t+1] = LoadActor("../GoSecretMode")..{
 	
 };
