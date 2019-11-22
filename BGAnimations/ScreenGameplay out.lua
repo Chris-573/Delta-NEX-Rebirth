@@ -17,8 +17,9 @@ return Def.ActorFrame {
 				local CSS = STATSMAN:GetCurStageStats();
 				local PSS = CSS:GetPlayerStageStats(Player);
 				local Accuracy = PSS:GetPercentDancePoints() * 100;
-				local Greats = 	PSS:GetTapNoteScores("TapNoteScore_W3");
+				local Greats =	PSS:GetTapNoteScores("TapNoteScore_W3");
 				local Goods = 	PSS:GetTapNoteScores("TapNoteScore_W4");
+				local Bads = 	PSS:GetTapNoteScores("TapNoteScore_W5");
 				local Misses = 	PSS:GetTapNoteScores("TapNoteScore_Miss") +
 								PSS:GetTapNoteScores("TapNoteScore_CheckpointMiss") +
 								PSS:GetTapNoteScores("TapNoteScore_HitMine");
@@ -39,30 +40,30 @@ return Def.ActorFrame {
 					end;
 				end;
 				
-				-- grade bonus: granted for full combos:
+				-- grade bonus: granted with ranks
 				-- perfect: 300000 points
 				-- great: 150000 points
-				-- good: 100000 points
+				-- good/bad or A rank: 100000 points
 				local GradeBonus = 0;
-				if Misses > 0 then
-					GradeBonus = 0;
-				elseif Goods > 0 then
+				if Goods > 0 or Bads > 0 then
 					GradeBonus = 100000;
 				elseif Greats > 0 then
 					GradeBonus = 150000;
-				else
+				elseif Misses == 0 then
 					GradeBonus = 300000;
 				end;
+				if Accuracy < 80 then
+					GradeBonus = 0;
+				end;
 				
+				-- replace the current stepmania score with ours + zero out the last two digits
 				local PlayerScore = getScores()[Player];
-				
 				if PlayerScore <= 0 then
 					PlayerScores[Player] = 0;
 				else
 					PlayerScores[Player] = (PlayerScore * LevelConstant) + GradeBonus;
 					PlayerScores[Player] = PlayerScores[Player] - (PlayerScores[Player] % 100);
 				end;
-				
 				PSS:SetScore(PlayerScores[Player]);
 			end;
 			self:sleep(1);

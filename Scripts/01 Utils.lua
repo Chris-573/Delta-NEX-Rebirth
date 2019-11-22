@@ -50,10 +50,10 @@ function GetGradeFromDancePoints(dancepoints, misses)
 	if dancepoints == 100 then
 		return "Tier00";
 	--S
-	elseif dancepoints >= 99 then
+	elseif dancepoints >= 98 then
 		return "Tier01";
 	--Silver S
-	elseif misses==0 then
+	elseif dancepoints >= 96 then
 		return "Tier02";
 	--A
 	elseif dancepoints >= 80 then

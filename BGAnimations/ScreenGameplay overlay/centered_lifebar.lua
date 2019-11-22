@@ -43,17 +43,15 @@ return Def.ActorFrame{
 			self:queuecommand("Begin");
 		end;
 		
-		
-		
 		LifeChangedMessageCommand=function(self,params)
 			if params.Player == player then
 				local lifeP1=params.LifeMeter:GetLife();
 				if lifeP1>=THEME:GetMetric("LifeMeterBar", "HotValue") then
-						self:diffusealpha(0.5);
-					else
-						self:diffusealpha(0);
-					end;
+					self:diffusealpha(0.5);
+				else
+					self:diffusealpha(0);
 				end;
+			end;
 		end;
 	};
 	
@@ -63,27 +61,23 @@ return Def.ActorFrame{
 		--InitCommand=cmd(valign,0.5;xy,-LIFEBAR_REALWIDTH/2,6;horizalign,left;zoomy,0.5;blend,Blend.Add); 
 		OnCommand=cmd(--[[bounce;effectmagnitude,-40,0,0;effectclock,"bgm";effecttiming,1,0,0,0;]]);
 		LifeChangedMessageCommand=function(self,params)
-				if params.Player == player then	
-					local lifeP1 = params.LifeMeter:GetLife();
-					if GAMESTATE:IsHumanPlayer(player)==true then
-						if lifeP1==0 then
-							self:visible(false);
+			if params.Player == player then	
+				local lifeP1 = params.LifeMeter:GetLife();
+				if GAMESTATE:IsHumanPlayer(player)==true then
+					if lifeP1==0 then
+						self:visible(false);
+					else
+						if lifeP1==1 then
+							self:effectmagnitude(0,0,0);
 						else
-							
-							if lifeP1==1 then
-								self:effectmagnitude(0,0,0);
-							else
-								self:effectmagnitude(-40,0,0);
-							end;
-					
-							self:visible(true);
-						end
+							self:effectmagnitude(-40,0,0);
+						end;
+						self:visible(true);
 					end
-					self:zoomtowidth((LIFEBAR_REALWIDTH)*lifeP1)
-								
-				end;
+				end
+				self:zoomtowidth((LIFEBAR_REALWIDTH)*lifeP1)		
+			end;
 		end;
-
 	};
 	
 	-- Left Corner
@@ -122,16 +116,9 @@ return Def.ActorFrame{
 	--SCORE
 	LoadFont("venacti/_venacti_outline 26px bold monospace numbers") .. {
 		InitCommand=cmd(zoomy,0.45;uppercase,true;shadowlength,1;x,LIFEBAR_WIDTH/2+20;);
-		
-		--Flip the score back around and change alignment if player 2
 		OnCommand=function(self)
-			if player == PLAYER_2 then
-				self:horizalign(left);
-				self:zoomx(-.45);
-			else
-				self:horizalign(right);
-				self:zoomx(.45);
-			end;
+			self:horizalign(right);
+			self:zoomx(.45);
 		end;
 		ComboChangedMessageCommand=function(self)
 			self:settext(string.format("%.02f",STATSMAN:GetCurStageStats():GetPlayerStageStats(player):GetPercentDancePoints()*100).."%");
@@ -160,12 +147,8 @@ return Def.ActorFrame{
 				end
 				--Need to offset it by half the lifebar width since otherwise it would be starting at the lifebar's center and going way off
 				self:x(LIFEBAR_REALWIDTH*lifeP1-(LIFEBAR_REALWIDTH/2));	
-
-					
 			end;
 		end;
-
 	};
-
 
 }

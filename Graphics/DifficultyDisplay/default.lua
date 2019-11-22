@@ -220,7 +220,7 @@ else
 							if steps:GetStepsType() == "StepsType_Pump_Single" then
 								self:setstate(2);
 							elseif steps:GetStepsType() == "StepsType_Pump_Double" then
-								--Check for StepF2 Double Performace tag
+								--Check for StepF2 Double Performance tag
 								if string.find(steps:GetDescription(), "DP") then
 									self:setstate(0);
 								else

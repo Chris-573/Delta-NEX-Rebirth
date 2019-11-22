@@ -44,7 +44,8 @@ t[#t+1] = Def.ActorFrame{
 
 	LoadFont("venacti/_venacti_outline 26px bold diffuse")..{
 		InitCommand=cmd(addy,8;zoom,0.4;diffuse,color("#fffFFF");diffusebottomedge,color("#CCCCCC");shadowlength,0.8);
-		Text=string.upper(string.gsub(song:GetGroupName(),"^%d%d? ?%- ?", ""));
+		--Text=string.upper(string.gsub(song:GetGroupName(),"^%d%d? ?%- ?", ""));
+		Text=string.upper(song:GetDisplayArtist())
 	};
 
 };

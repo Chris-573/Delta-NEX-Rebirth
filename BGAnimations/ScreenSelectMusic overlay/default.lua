@@ -27,7 +27,7 @@ local function inputs(event)
 			if button == "DownRight" then
 				MESSAGEMAN:Broadcast("CWChangeIndexMessageCommand", {Player=pn,Direction=1})
 			elseif button == "DownLeft" then
-				MESSAGEMAN:Broadcast("CWChangeIndexMessageCommand", {Player=pn,Direccion=-1})
+				MESSAGEMAN:Broadcast("CWChangeIndexMessageCommand", {Player=pn,Direction=-1})
 			elseif button == "UpRight" or button == "UpLeft" then
 				MESSAGEMAN:Broadcast("CommandWindowClosed", {Player = pn})
 				SCREENMAN:set_input_redirected(pn, false);
