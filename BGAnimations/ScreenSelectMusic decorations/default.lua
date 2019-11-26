@@ -714,7 +714,7 @@ t[#t+1] = Def.ActorFrame{
 	};
 
 	LoadActor("rdy_logo")..{
-		InitCommand=cmd(x,3;y,-42;zoom,0.4;draworder,100;thump;effectperiod,2;;diffuse,0,0,0,0;diffusetopedge,0.25,0.25,0.25,0);
+		InitCommand=cmd(x,3;y,-18;zoom,0.4;draworder,100;thump;effectperiod,2;;diffuse,0,0,0,0;diffusetopedge,0.25,0.25,0.25,0);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.2;;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);

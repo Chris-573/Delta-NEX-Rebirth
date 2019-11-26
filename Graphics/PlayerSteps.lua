@@ -1,9 +1,35 @@
 local player = ...;
 local t = Def.ActorFrame{}
 
+-- chart name
+t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
+	InitCommand=cmd(maxwidth,300;x,-90;zoom,0.5;y,-90,vertalign,top;horizalign,center;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
+	
+	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
+	
+	CurrentSongChangedMessageCommand=cmd(queuecommand,"Set");
+	CurrentStepsP1ChangedMessageCommand=cmd(queuecommand,"Set");
+	CurrentStepsP2ChangedMessageCommand=cmd(queuecommand,"Set");
+	SetCommand=function(self)
+		self:playcommand("NormalColor");
+		local song = GAMESTATE:GetCurrentSong()
+		if song then
+			self:diffusealpha(1);
+			local steps = GAMESTATE:GetCurrentSteps(player);
+			if player == PLAYER_2 then
+				self:x(90);
+			end;
+			self:settext(steps:GetChartName());
+		else
+			self:settext("---");
+			self:diffusealpha(0.3);
+		end
+	end
+};
+
 --difficulty name
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
-	InitCommand=cmd(maxwidth,300;x,-33;zoom,0.5;y,2;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
+	InitCommand=cmd(maxwidth,300;x,-33;zoom,0.5;y,-22;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
 	
 	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
 	ExtraColorCommand=cmd(diffuse,color("1,1,0,1");diffusebottomedge,color("0.9,0.5,0.2,1"));
@@ -35,11 +61,11 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 			else
 				if inBasicMode then
 					if steps:GetMeter() <= 3 then
-						self:settext("NORMAL")
+						self:settext("EASY")
 					elseif steps:GetMeter() <= 7 then
-						self:settext("HARD")
+						self:settext("NORMAL")
 					else
-						self:settext("VERY HARD");
+						self:settext("HARD");
 					end;
 				else
 					self:settext(diff);
@@ -64,7 +90,7 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 
 --meter/level
 t[#t+1] = LoadFont("venacti/_venacti_ 26px bold monospace numbers") .. {
-	InitCommand=cmd(zoom,0.85;x,-2;y,4;maxwidth,45;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");glowshift;queuecommand,"Set");
+	InitCommand=cmd(zoom,0.85;x,-2;y,-20;maxwidth,45;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");glowshift;queuecommand,"Set");
 	
 	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
 	ExtraColorCommand=cmd(diffuse,color("1,1,0,1");diffusebottomedge,color("0.9,0.5,0.2,1"));
@@ -107,7 +133,7 @@ t[#t+1] = LoadFont("venacti/_venacti_ 26px bold monospace numbers") .. {
 
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 	Text="Lv.";
-	InitCommand=cmd(zoom,0.3;y,15;x,-32;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffusebottomedge,color("0.8,0.8,0.8,1");queuecommand,"Set");
+	InitCommand=cmd(zoom,0.3;y,-9;x,-32;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffusebottomedge,color("0.8,0.8,0.8,1");queuecommand,"Set");
 	CurrentSongChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP1ChangedMessageCommand=cmd(queuecommand,"Set");
 	CurrentStepsP2ChangedMessageCommand=cmd(queuecommand,"Set");

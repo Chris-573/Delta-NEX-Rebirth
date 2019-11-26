@@ -8,7 +8,7 @@ local halignment = (alignment == -1) and 1 or 0;
 return Def.ActorFrame{
 
 	LoadActor("PlayerSteps", steps)..{
-		InitCommand=cmd(draworder,100;zoom,1.2;x,145*alignment;y,-45*(containerHeight/100););
+		InitCommand=cmd(draworder,100;zoom,1.2;x,145*alignment;y,-21*(containerHeight/100););
 		OnCommand=function(self)
 			if alignment == 1 then
 			

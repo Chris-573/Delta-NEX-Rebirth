@@ -26,11 +26,11 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 		else
 			if inBasicMode then
 				if steps:GetMeter() <= 3 then
-					self:settext("NORMAL")
+					self:settext("EASY")
 				elseif steps:GetMeter() <= 7 then
-					self:settext("HARD")
+					self:settext("NORMAL")
 				else
-					self:settext("VERY HARD");
+					self:settext("HARD");
 				end;
 			else
 				self:settext(diff);
