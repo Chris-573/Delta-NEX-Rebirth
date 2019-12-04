@@ -3,7 +3,7 @@ local t = Def.ActorFrame{}
 
 -- chart name
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
-	InitCommand=cmd(maxwidth,300;x,-90;zoom,0.5;y,-90,vertalign,top;horizalign,center;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
+	InitCommand=cmd(maxwidth,400;zoom,0.5;y,-200,vertalign,top;horizalign,center;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,1");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");
 	
 	NormalColorCommand=cmd(diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1"));
 	
@@ -17,15 +17,26 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 			self:diffusealpha(1);
 			local steps = GAMESTATE:GetCurrentSteps(player);
 			if player == PLAYER_2 then
-				self:x(90);
+				self:y(-180);
 			end;
-			self:settext(steps:GetChartName());
+			if 	string.find(steps:GetDescription():lower(), "quest") or
+				string.find(steps:GetDescription():lower(), "hidden") then
+				self:settext(steps:GetChartName());
+			elseif string.find(steps:GetDescription():lower(), "ucs") then
+				self:settext("UCS by: "..steps:GetAuthorCredit());
+			else
+				self:settext("---");
+				self:diffusealpha(0);
+			end;
 		else
 			self:settext("---");
-			self:diffusealpha(0.3);
+			self:diffusealpha(0);
 		end
 	end
+	
 };
+
+
 
 --difficulty name
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {

@@ -6,7 +6,7 @@ _G.predefined_group_list = {
 "09-S.E.~EXTRA",
 "10-REBIRTH~PREX 3",
 "11-EXCEED~ZERO",
-"12-NX~NX2",
+"12-NX-NX2",
 "13-NX ABSOLUTE",
 "14-FIESTA",
 "15-FIESTA EX",
