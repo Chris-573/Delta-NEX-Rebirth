@@ -2,9 +2,9 @@
 
 ### DO NOT ENABLE PAY MODE. DO NOT SELL THIS THEME. DO NOT REMOVE THE CREDITS. NO NO NO. 
 
-An old StepMania theme, modded and fixed to support StepMania 5.0.12 along with other stuff.
+An old StepMania theme, modded and fixed to support StepMania 5.1+ along with other stuff.
 
-Rebirth mod written by Rhythm Lunatic with new graphics created by Joao Almeida. Rest of the credits are in credits.txt
+Rebirth mod written by Rhythm Lunatic with new graphics created by Joao Almeida, polish and basic maintenance by Chris573. Rest of the credits are in credits.txt.
 
 This theme is 100% free and open source. Don't abuse it and shove it on your bootlegged PIU machine, go buy the game if you want to run a business.
 
@@ -54,8 +54,8 @@ A: StepF2, being the paragon of good standards, uses Double charts for Double Pe
 
 Q: Nothing happens when I press UpLeft or UpRight on the song select screen.
 
-A: Your StepMania is out of date. Update to 5.0.12 or higher.
+A: Your StepMania is out of date. Update to 5.1 or higher.
 
 Q: Your theme lags when I scroll through songs.
 
-A: As of 0.98 the lag has been reduced by waiting until the songwheel is settled to load previews/backgrounds. If you are still experiencing lag you may want to run the Linux version of StepMania, as it does not lag when scrolling.
+A: Yes it lags with me as well. On Linux it's way worse and soon a rewrite of bits of the song wheel will attempt to fix it.
