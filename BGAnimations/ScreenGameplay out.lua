@@ -1,25 +1,13 @@
+	-- K-Pump scoring system - Chrissy573
+local PlayerScores = {
+	PlayerNumber_P1 = 0;
+	PlayerNumber_P2 = 0;
+	PlayerNumber_Invalid = 0;
+};
 
-local t = Def.ActorFrame{};
-
---[[
-	t[#t+1] = Def.Quad{
-		InitCommand=cmd(FullScreen;diffuse,color("1,0,0,0");blend,Blend.Multiply);
-		OnCommand=cmd(diffuse,color("0.75,0,0,0.75");decelerate,1.75;diffuse,color("0,0,0,1"));
-	};
-	
-	]]--
-	t[#t+1] = LoadActor("iwbtg")..{
-		InitCommand=cmd(Center;zoomto,SCREEN_WIDTH,SCREEN_HEIGHT);
-	};
-	
-	
-	t[#t+1] = Def.Quad {
-		InitCommand=cmd(blend,Blend.Add;Center;zoomto,SCREEN_WIDTH+1,SCREEN_HEIGHT);
-<<<<<<< Updated upstream
-		OnCommand=cmd(diffuse,color("1,1,1,0");sleep,4;playcommand,"Off");
-		OffCommand=cmd(diffusealpha,0;accelerate,0.325;diffusealpha,1);
-=======
-		OnCommand=cmd(diffuse,color("1,1,1,0");sleep,3;playcommand,"Off");
+return Def.ActorFrame {
+	Def.Quad {
+		InitCommand=cmd(setsize,SCREEN_WIDTH,SCREEN_HEIGHT;Center;diffusealpha,0;);
 		OffCommand=function(self)
 			for Player in ivalues(GAMESTATE:GetHumanPlayers()) do
 				local StepData = GAMESTATE:GetCurrentSteps(Player);
@@ -28,6 +16,12 @@ local t = Def.ActorFrame{};
 				
 				local CSS = STATSMAN:GetCurStageStats();
 				local PSS = CSS:GetPlayerStageStats(Player);
+				local Greats =	PSS:GetTapNoteScores("TapNoteScore_W3");
+				local Goods = 	PSS:GetTapNoteScores("TapNoteScore_W4");
+				local Bads = 	PSS:GetTapNoteScores("TapNoteScore_W5");
+				local Misses = 	PSS:GetTapNoteScores("TapNoteScore_Miss") +
+								PSS:GetTapNoteScores("TapNoteScore_CheckpointMiss") +
+								PSS:GetTapNoteScores("TapNoteScore_HitMine");
 				
 				-- level constant: the multipler utilized to increase scores with more difficult charts and doubles
 				local LevelConstant = 1;
@@ -45,28 +39,32 @@ local t = Def.ActorFrame{};
 					end;
 				end;
 				
-				-- no grade bonus with a fail :(
+				-- grade bonus: granted with ranks
+				-- perfect (SSS): 300000 points
+				-- great (SS): 150000 points
+				-- good/bad (S): 100000 points
+				local GradeBonus = 300000;
+				if Misses > 0 then
+					GradeBonus = 0;
+				elseif Goods > 0 or Bads > 0 then
+					GradeBonus = 100000;
+				elseif Greats > 0 then
+					GradeBonus = 150000;
+				end;
 				
 				-- replace the current stepmania score with ours + zero out the last two digits
 				local PlayerScore = getScores()[Player];
 				if PlayerScore <= 0 then
 					PlayerScores[Player] = 0;
 				else
-					PlayerScores[Player] = PlayerScore * LevelConstant;
+					PlayerScores[Player] = (PlayerScore * LevelConstant) + GradeBonus;
 					PlayerScores[Player] = PlayerScores[Player] - (PlayerScores[Player] % 100);
 				end;
 				PSS:SetScore(PlayerScores[Player]);
 			end;
-			self:accelerate(0.325);
+			self:sleep(1);
+			self:linear(1);
 			self:diffusealpha(1);
 		end;
->>>>>>> Stashed changes
 	};
-	
-
-	t[#t+1] = LoadActor(THEME:GetPathS( Var "LoadingScreen", "failed" ) ) .. {
-		StartTransitioningCommand=cmd(play);
-	};
-
-
-return t;
+};
