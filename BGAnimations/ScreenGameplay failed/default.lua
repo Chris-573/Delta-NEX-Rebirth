@@ -35,15 +35,17 @@ local t = Def.ActorFrame{};
 					StepType == "StepsType_Pump_Halfdouble" or 
 					StepType == "StepsType_Pump_Routine") then
 					if StepLevel > 10 then
-						LevelConstant = (StepLevel / 10) * 1.2
+						LevelConstant = (StepLevel / 10) * 1.2;
 					else
-						LevelConstant = 1.2
+						LevelConstant = 1.2;
 					end;
 				else
 					if StepLevel > 10 then
-						LevelConstant = StepLevel / 10
+						LevelConstant = StepLevel / 10;
 					end;
 				end;
+				
+				-- no grade bonus with a fail :(
 				
 				-- replace the current stepmania score with ours + zero out the last two digits
 				local PlayerScore = getScores()[Player];
@@ -63,6 +65,5 @@ local t = Def.ActorFrame{};
 	t[#t+1] = LoadActor(THEME:GetPathS( Var "LoadingScreen", "failed" ) ) .. {
 		StartTransitioningCommand=cmd(play);
 	};
-
 
 return t;

@@ -1,4 +1,4 @@
-	-- K-Pump scoring system - Chrissy573
+	-- K-Pump scoring system - Chris573
 local TapNoteScorePoints = {
 	TapNoteScore_CheckpointHit = 1000;	-- HOLD PERFECT
 	TapNoteScore_W1 = 1000;				-- SUPERB
@@ -7,16 +7,11 @@ local TapNoteScorePoints = {
 	TapNoteScore_W4 = 100;				-- GOOD
 	TapNoteScore_W5 = -200;				-- BAD
 	TapNoteScore_Miss = -500;			-- MISS
-	TapNoteScore_CheckpointMiss = -500;	-- HOLD MISS
+	TapNoteScore_CheckpointMiss = -300;	-- HOLD MISS
 	TapNoteScore_None =	0;
-	TapNoteScore_HitMine =	-500;
+	TapNoteScore_HitMine = 0;
 	TapNoteScore_AvoidMine = 0;
 };
-
-if PREFSMAN:GetPreference("AllowW1") == "AllowW1_Never" then
-	TapNoteExScorePoints["TapNoteScore_CheckpointHit"] = 4;
-	TapNoteExScorePoints["TapNoteScore_W1"] = 4;
-end;
 
 local PlayerScores = {
 	PlayerNumber_P1 = 0;
@@ -47,24 +42,14 @@ return Def.ActorFrame {
 				
 				-- combo score: self explanatory tbh
 				local ComboScore = 0;
-				if iCombo >= 50 and TapNoteScore <= "TapNoteScore_W3" then 
-					if iStepsCount <= 2 then 
-						ComboScore = 1000;
-					elseif iStepsCount == 3 then 
-						ComboScore = 1500;
-					else
-						ComboScore = 2000;
-					end;
+				if iCombo > 50 and TapNoteScore <= "TapNoteScore_W3" then
+					ComboScore = 1000;
 				end;
 				
 				-- note score: same with here I guess
 				local NoteScore = TapNoteScorePoints[TapNoteScore];	
-				if TapNoteScore <= "TapNoteScore_W3" and iStepsCount >= 3 then
-					if iStepsCount == 3 then
-						NoteScore = NoteScore * 1.5;
-					else
-						NoteScore = NoteScore * 2;
-					end;
+				if iStepsCount > 2 then
+					NoteScore = NoteScore * (iStepsCount / 2);
 				end;
 				
 				-- !!! hack: removes extra combo/score count from the end of hold arrows !!!

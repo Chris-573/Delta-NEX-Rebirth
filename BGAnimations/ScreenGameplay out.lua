@@ -1,4 +1,4 @@
-	-- K-Pump scoring system - Chrissy573
+	-- K-Pump scoring system - Chris573
 local PlayerScores = {
 	PlayerNumber_P1 = 0;
 	PlayerNumber_P2 = 0;
@@ -16,7 +16,6 @@ return Def.ActorFrame {
 				
 				local CSS = STATSMAN:GetCurStageStats();
 				local PSS = CSS:GetPlayerStageStats(Player);
-				local Accuracy = PSS:GetPercentDancePoints() * 100;
 				local Greats =	PSS:GetTapNoteScores("TapNoteScore_W3");
 				local Goods = 	PSS:GetTapNoteScores("TapNoteScore_W4");
 				local Bads = 	PSS:GetTapNoteScores("TapNoteScore_W5");
@@ -30,30 +29,27 @@ return Def.ActorFrame {
 					StepType == "StepsType_Pump_Halfdouble" or 
 					StepType == "StepsType_Pump_Routine") then
 					if StepLevel > 10 then
-						LevelConstant = (StepLevel / 10) * 1.2
+						LevelConstant = (StepLevel / 10) * 1.2;
 					else
-						LevelConstant = 1.2
+						LevelConstant = 1.2;
 					end;
 				else
 					if StepLevel > 10 then
-						LevelConstant = StepLevel / 10
+						LevelConstant = StepLevel / 10;
 					end;
 				end;
 				
 				-- grade bonus: granted with ranks
-				-- perfect: 300000 points
-				-- great: 150000 points
-				-- good/bad or A rank: 100000 points
-				local GradeBonus = 0;
-				if Goods > 0 or Bads > 0 then
+				-- perfect (SSS): 300000 points
+				-- great (SS): 150000 points
+				-- good/bad (S): 100000 points
+				local GradeBonus = 300000;
+				if Misses > 0 then
+					GradeBonus = 0;
+				elseif Goods > 0 or Bads > 0 then
 					GradeBonus = 100000;
 				elseif Greats > 0 then
 					GradeBonus = 150000;
-				elseif Misses == 0 then
-					GradeBonus = 300000;
-				end;
-				if Accuracy < 80 then
-					GradeBonus = 0;
 				end;
 				
 				-- replace the current stepmania score with ours + zero out the last two digits

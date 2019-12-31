@@ -116,7 +116,7 @@ local t = Def.ActorFrame{
 
 t[#t+1] = Def.ActorFrame{
 	LoadActor(THEME:GetPathG("","JoinOverlay"))..{
-		InitCommand=cmd(xy,SCREEN_WIDTH*.15,SCREEN_CENTER_Y+60;zoom,.9;visible,THEME:GetMetric("GameState", "AllowLateJoin");playcommand,"RefreshPlayer");
+		InitCommand=cmd(xy,SCREEN_WIDTH*.145,SCREEN_CENTER_Y+100;zoom,.9;visible,THEME:GetMetric("GameState", "AllowLateJoin");playcommand,"RefreshPlayer");
 		PlayerJoinedMessageCommand=cmd(playcommand,"RefreshPlayer");
 		CoinModeChangedMessageCommand=cmd(playcommand,"RefreshPlayer");
 		CoinInsertedMessageCommand=cmd(playcommand,"RefreshPlayer");
@@ -125,7 +125,7 @@ t[#t+1] = Def.ActorFrame{
 		end;
 	};
 	LoadActor(THEME:GetPathG("","JoinOverlay"))..{
-		InitCommand=cmd(xy,SCREEN_WIDTH*.85,SCREEN_CENTER_Y+60;zoom,.9;visible,THEME:GetMetric("GameState", "AllowLateJoin");playcommand,"RefreshPlayer");
+		InitCommand=cmd(xy,SCREEN_WIDTH*.855,SCREEN_CENTER_Y+100;zoom,.9;visible,THEME:GetMetric("GameState", "AllowLateJoin");playcommand,"RefreshPlayer");
 		PlayerJoinedMessageCommand=cmd(playcommand,"RefreshPlayer");
 		CoinModeChangedMessageCommand=cmd(playcommand,"RefreshPlayer");
 		CoinInsertedMessageCommand=cmd(playcommand,"RefreshPlayer");
