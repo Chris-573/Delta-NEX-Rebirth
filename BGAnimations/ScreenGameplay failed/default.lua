@@ -6,7 +6,7 @@ local PlayerScores = {
 
 local t = Def.ActorFrame{};
 
---[[
+	--[[
 	t[#t+1] = Def.Quad{
 		InitCommand=cmd(FullScreen;diffuse,color("1,0,0,0");blend,Blend.Multiply);
 		OnCommand=cmd(diffuse,color("0.75,0,0,0.75");decelerate,1.75;diffuse,color("0,0,0,1"));
