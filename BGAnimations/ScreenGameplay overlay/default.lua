@@ -59,10 +59,10 @@ elseif style == "TwoPlayersTwoSides" or style == "OnePlayerOneSide" then
 			InitCommand=cmd(y,34);
 			OnCommand=function(self)
 				if pn == PLAYER_1 then
-					self:x(SCREEN_WIDTH/4);
+					self:x((SCREEN_WIDTH/4) - 30);
 					self:horizalign(left);
 				else
-					self:x(SCREEN_WIDTH*.75);
+					self:x((SCREEN_WIDTH*.75) + 30);
 					self:horizalign(right);
 				end;
 			end;
