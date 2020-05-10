@@ -36,8 +36,6 @@ t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 	
 };
 
-
-
 --difficulty name
 t[#t+1] = LoadFont("venacti/_venacti 13px bold diffuse") .. {
 	InitCommand=cmd(maxwidth,300;x,-33;zoom,0.5;y,-22;vertalign,top;horizalign,right;shadowlengthy,1.2;shadowlengthx,0.8;shadowcolor,color("0,0,0,0.6");diffuse,color("1,1,1,1");diffusebottomedge,color("0.75,0.75,0.75,1");queuecommand,"Set");

@@ -692,19 +692,11 @@ t[#t+1] = Def.ActorFrame{
 	InitCommand=cmd(xy,SCREEN_CENTER_X,SCREEN_HEIGHT*.85);
 
 	LoadActor("rdy_add")..{
-		InitCommand=cmd(y,-30;diffusealpha,0;zoom,0.49;draworder,100;blend,Blend.Multiply;);
+		InitCommand=cmd(y,-55;diffusealpha,0;zoom,0.49;draworder,100;blend,Blend.Add;);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
 	};
-
-	LoadActor("rdy_add")..{
-		InitCommand=cmd(y,-30;zoom,0.49;diffusealpha,0;draworder,100;blend,Blend.Add;);
-		SongChosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,1);
-		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
-		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.15;diffusealpha,0);
-	};
-
 
 	LoadActor("rdy_sub")..{
 		InitCommand=cmd(y,17;zoom,0.45;diffusealpha,0;draworder,100;diffuse,0,0,0,0);
@@ -714,7 +706,7 @@ t[#t+1] = Def.ActorFrame{
 	};
 
 	LoadActor("rdy_logo")..{
-		InitCommand=cmd(x,3;y,-18;zoom,0.4;draworder,100;thump;effectperiod,2;;diffuse,0,0,0,0;diffusetopedge,0.25,0.25,0.25,0);
+		InitCommand=cmd(x,3;y,-42;zoom,0.4;draworder,100;thump;effectperiod,2;;diffuse,0,0,0,0;diffusetopedge,0.25,0.25,0.25,0);
 		SongChosenMessageCommand=cmd(stoptweening;linear,0.2;;diffusealpha,1);
 		TwoPartConfirmCanceledMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);
 		SongUnchosenMessageCommand=cmd(stoptweening;linear,0.2;diffusealpha,0;);
